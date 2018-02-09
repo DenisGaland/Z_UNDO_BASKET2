@@ -1,0 +1,127 @@
+<mvc:View xmlns:html="http://www.w3.org/1999/xhtml" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m" xmlns:tnt="sap.tnt" xmlns:ui="sap.ui.commons"
+	xmlns:f="sap.ui.layout.form" xmlns:l="sap.ui.layout" xmlns:core="sap.ui.core" xmlns:u="sap.ui.unified"
+	controllerName="z_undo_basket2.controller.MYVIEW" displayBlock="true">
+	<App>
+		<pages>
+			<Page showHeader="false" enableScrolling="false">
+				<HBox width="100%" id="H_PLANT" alignContent="Start" alignItems="Center">
+					<items>
+						<sap.ui.core:Icon src="sap-icon://home" size="2em" xmlns:sap.ui.core="sap.ui.core" id="__icon0"/>
+						<Label text="Label" width="100%" id="__PLANT" design="Bold"/>
+						<HBox width="10%" id="Space6" alignContent="Start" alignItems="Center"></HBox>
+						<HBox width="100%" id="TYPEFLUX" alignContent="Start" alignItems="Center" visible="false">
+							<items>
+								<HBox width="1%" id="Space5" alignContent="Start" alignItems="Center"></HBox>
+								<HBox width="2%" id="Space71" alignContent="Start" alignItems="Center"></HBox>
+								<Label text="" width="100%" id="TYPE" design="Bold"/>
+								<Label text="" width="100%" id="TYPECODE" visible="false"/>
+							</items>
+						</HBox>
+					</items>
+				</HBox>
+				<Panel id="H_Header" backgroundDesign="Translucent">
+					<Toolbar>
+						<Title id="headertext" text="{i18n>basket}" level="H5" titleStyle="H5"/>
+						<ToolbarSpacer/>
+					</Toolbar>
+					<FlexBox>
+						<HBox alignItems="Center" width="50%">
+							<items>
+								<Label text="{i18n>ean_code}"/>
+								<Input type="Text" id="eancode" enabled="false"/>
+							</items>
+						</HBox>
+						<HBox alignItems="Center" width="50%">
+							<items>
+								<Label id="ccy" text="{i18n>price_in_eur}"/>
+								<Input type="Text" id="prx" enabled="false"/>
+								<!--<m:Label id="ccy" text="currency"></m:Label>-->
+							</items>
+						</HBox>
+					</FlexBox>
+					<FlexBox>
+						<HBox alignItems="Center" width="50%">
+							<items>
+								<Label text="{i18n>description}"/>
+								<Input type="Text" id="descr" enabled="false" width="250px"/>
+							</items>
+						</HBox>
+					</FlexBox>
+					<FlexBox>
+						<HBox alignItems="Center" width="50%">
+							<items>
+								<Label id="unit" text="{i18n>quantity_in_ea}"/>
+								<!--<Input type="Text" id="qty" width="40px" maxLength="3"/>-->
+								<Select id="qty" items="{Numbers>/ItemSet}">
+									<core:ListItem key="{Numbers>Number}" text="{Numbers>Number}"/>
+								</Select>
+								<!--<m:Label id="unit" text="unitexample"></m:Label>-->
+							</items>
+						</HBox>
+						<HBox alignItems="Center" width="50%">
+							<items>
+								<Label id="stock" text="{i18n>stock}"/>
+								<Input type="Text" id="stk" enabled="false"/>
+							</items>
+						</HBox>
+					</FlexBox>
+				</Panel>
+				<!-- Begin Tiles -->
+				<HBox width="100%" id="Article" alignItems="Center">
+					<items>
+						<Label text="{i18n>mat}" width="100%" id="__label0_copy" design="Bold" textAlign="Center"/>
+						<SearchField width="100%" id="SearchArt" placeholder="" search="searchArt"/>
+					</items>
+				</HBox>
+				<!-- End scan input -->
+				<HBox width="100%" id="TOOL_BAR" alignContent="Start" alignItems="Center" visible="false">
+					<Toolbar>
+						<content>
+							<Button text="{i18n>check_basket}" icon="sap-icon://save" id="save" tooltip="Recept selected items" press="CheckSelected" type="Emphasized"/>
+							<Button text="{i18n>undo_basket}" icon="sap-icon://save" id="savebasket" tooltip="Recept selected items" press="SaveBasket"
+								type="Emphasized"/>
+							<Button icon="sap-icon://delete" tooltip="clear list" id="clear" press="ClearLabels" text="{i18n>clear}" type="Emphasized"/>
+						</content>
+					</Toolbar>
+				</HBox>
+				<ScrollContainer id="scroll" horizontal="true" vertical="true" focusable="true" height="420px">
+					<Table id="table1" items="{itemModel>/items}" ariaLabelledBy="title" width="100%" visible="false"
+						class="tableItems">
+						<columns>
+							<Column width="1.5rem">
+								<Label text="{i18n>ean_code}({Model2>/Products})"/>
+							</Column>
+							<Column width="3rem">
+								<Label text="{i18n>description}"/>
+							</Column>
+							<Column width="1rem" class="yellow">
+								<Label text="{i18n>qty}({Model2>/Sum})"/>
+							</Column>
+							<Column width="1rem">
+								<Label text="{i18n>status}"/>
+							</Column>
+						</columns>
+						<items>
+							<ColumnListItem>
+								<cells>
+									<Text text="{itemModel>Ean11}"/>
+									<Text text="{itemModel>Maktx}"/>
+									<Text text="{itemModel>Qty} {itemModel>Meins}"/>
+									<Text text="{itemModel>Mstae}"/>
+								</cells>
+							</ColumnListItem>
+						</items>
+					</Table>
+				</ScrollContainer>
+				<!-- Begin Table -->
+				<HBox width="100%" id="Scroll" alignContent="Start" alignItems="Center" visible="false">
+					<HBox width="1000000%" id="Spac" alignContent="Start" alignItems="Center"></HBox>
+					<VBox width="100%" id="Scollvert" alignContent="Start" alignItems="Center">
+						<sap.ui.core:Icon src="sap-icon://collapse-group" size="1em" xmlns:sap.ui.core="sap.ui.core" id="icon11"/>
+						<sap.ui.core:Icon src="sap-icon://expand-group" size="1em" xmlns:sap.ui.core="sap.ui.core" id="icon10"/>
+					</VBox>
+				</HBox>
+			</Page>
+		</pages>
+	</App>
+</mvc:View>
